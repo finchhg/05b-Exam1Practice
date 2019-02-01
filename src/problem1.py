@@ -3,8 +3,8 @@ PRACTICE Exam 1, problem 1.
 
 Authors: David Mutchler, Vibha Alangar, Matt Boutell, Dave Fisher,
          Valerie Galluzzi, Mark Hays, Amanda Stouder, Aaron Wilkin,
-         their colleagues, and PUT_YOUR_NAME_HERE.
-"""  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
+         their colleagues, and Harrison Finch.
+"""  # done: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
 ###############################################################################
 # Students:
@@ -28,6 +28,7 @@ Authors: David Mutchler, Vibha Alangar, Matt Boutell, Dave Fisher,
 
 import testing_helper
 import time
+import math
 
 
 def main():
@@ -38,7 +39,7 @@ def main():
 
 
 ###############################################################################
-# TODO: 2.  READ the green doc-string for the:
+# done: 2.  READ the green doc-string for the:
 #   - is_prime
 #   - sum_of_digits
 # functions defined below.  You do NOT need to understand their
@@ -72,9 +73,6 @@ def is_prime(n):
     #
     # Instead, ** CALL ** this function as needed in the problems below.
     # -------------------------------------------------------------------------
-
-
-def sum_of_digits(number):
     """
     What comes in:  An integer.
     What goes out:  Returns the sum of the digits in the given integer.
@@ -106,7 +104,7 @@ def sum_of_digits(number):
 def run_test_problem1a():
     """ Tests the   problem1a   function. """
     # -------------------------------------------------------------------------
-    # TODO: 3. Implement this TEST function.
+    # done: 3. Implement this TEST function.
     #   It TESTS the  problem1a  function defined below.
     #   Include at least **   4   ** tests (we wrote two for you).
     # -------------------------------------------------------------------------
@@ -148,9 +146,25 @@ def run_test_problem1a():
     #   print('Test 1 expected:', expected)
     #   print('       actual:  ', actual)
     # -------------------------------------------------------------------------
+    expected = -0.142188448598399
+    print_expected_result_of_test([20, 101], expected, test_results,
+                                  format_string)
+    actual = problem1a(20, 101)
+    print_actual_result_of_test(expected, actual, test_results, precision=3)
 
+    expected = 1.0799959153362244
+    print_expected_result_of_test([10, 11], expected, test_results,
+                                  format_string)
+    actual = problem1a(10, 11)
+    print_actual_result_of_test(expected, actual, test_results, precision=3)
 
 def problem1a(m, n):
+
+    total = 0
+    for k in range(n ** 2 - (m ** 2) + 1):
+        total = total + math.sin(k + m ** 2)
+    return total
+
     """
     What comes in:  Integers m and n with abs(m) <= abs(n).
     What goes out:
@@ -168,7 +182,7 @@ def problem1a(m, n):
       -- If m is 30 and n is 100, the correct answer is about 1.278.
     """
     # -------------------------------------------------------------------------
-    # TODO: 4. Implement and test this function.
+    # done: 4. Implement and test this function.
     #   Note that you should write its TEST function first (above).
     # -------------------------------------------------------------------------
     # -------------------------------------------------------------------------
@@ -199,8 +213,32 @@ def run_test_problem1b():
     print('Testing the   problem1b   function:')
     print('--------------------------------------------------')
 
+    expected = 5
+    actual = problem1b(3, 5)
+    print('Test 1 expected:', expected)
+    print('       actual:  ', actual)
+
+    expected = 10
+    actual = problem1b(4, 10)
+    print('Test 1 expected:', expected)
+    print('       actual:  ', actual)
+
+    expected = 16
+    actual = problem1b(8, 9)
+    print('Test 1 expected:', expected)
+    print('       actual:  ', actual)
+
+    expected = 95
+    actual = problem1b(11, 48)
+    print('Test 1 expected:', expected)
+    print('       actual:  ', actual)
 
 def problem1b(m, f):
+
+    total = 0
+    for k in range((f * m) - m + 1):
+        total = total + is_prime(k + m)
+    return total
     """
     What comes in:  Positive integers m and f such that m >= 2.
     What goes out:
