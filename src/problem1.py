@@ -73,6 +73,8 @@ def is_prime(n):
     #
     # Instead, ** CALL ** this function as needed in the problems below.
     # -------------------------------------------------------------------------
+
+def sum_of_digits(number):
     """
     What comes in:  An integer.
     What goes out:  Returns the sum of the digits in the given integer.
@@ -99,7 +101,6 @@ def is_prime(n):
         number = number // 10
 
     return digit_sum
-
 
 def run_test_problem1a():
     """ Tests the   problem1a   function. """
@@ -328,6 +329,14 @@ def run_test_problem1c():
 
 
 def problem1c(n):
+    total = 1
+    for k in range(n):
+        x = is_prime(n - k)
+        if x is True:
+            total = total * (n - k)
+    return sum_of_digits(total)
+
+
     """
     What comes in:  An integer n >= 2.
     What goes out:
@@ -352,7 +361,7 @@ def problem1c(n):
            and the sum of the digits in 223092870 is 33.
     """
     # -------------------------------------------------------------------------
-    # TODO: 7. Implement and test this function.
+    # done: 7. Implement and test this function.
     #          Tests have been written for you (above).
     #
     ###########################################################################
