@@ -3,8 +3,8 @@ PRACTICE Exam 1, problem 3.
 
 Authors: David Mutchler, Vibha Alangar, Matt Boutell, Dave Fisher,
          Valerie Galluzzi, Mark Hays, Amanda Stouder, Aaron Wilkin,
-         their colleagues, and PUT_YOUR_NAME_HERE.
-"""  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
+         their colleagues, and Harrison Finch.
+"""  # done: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
 import rosegraphics as rg
 
@@ -38,7 +38,7 @@ def main():
 def run_test_problem3a():
     """ Tests the   problem3a   function. """
     # -------------------------------------------------------------------------
-    # TODO: 2. Implement this TEST function.
+    # done: 2. Implement this TEST function.
     #   It TESTS the  problem1a  function defined below.
     #   Include at least **   5   ** tests (we wrote four for you).
     # -------------------------------------------------------------------------
@@ -96,6 +96,13 @@ def run_test_problem3a():
     print('Test 4 expected:', expected)
     print('       actual:  ', answer)
 
+    point = rg.Point(50, 50)
+    expected = 1128
+    answer = problem3a(window3, point, 90)
+    print()
+    print('Test 5 expected:', expected)
+    print('       actual:  ', answer)
+
     window3.close_on_mouse_click()
 
     # -------------------------------------------------------------------------
@@ -106,6 +113,30 @@ def run_test_problem3a():
 
 
 def problem3a(window, point, n):
+
+    end = rg.Point(point.x, point.y + 50)
+    line = rg.Line(point, end)
+    line.thickness = 1
+    line.attach_to(window)
+    total = 1
+    x = 1
+
+    for k in range(n - 1):
+        if k >= 5:
+            x = 13
+        else:
+            x = x + 2
+
+        pt = rg.Point(point.x + 20 * (k + 1), point.y + 10 * (k + 1))
+        pt2 = rg.Point(pt.x, pt.y + 50)
+
+        line2 = rg.Line(pt, pt2)
+        line2.thickness = x
+        line2.attach_to(window)
+
+        window.render()
+        total = total + x
+    return total
     """
     See   problem3a_picture.pdf   in this project for pictures
     that may help you better understand the following specification:
@@ -138,7 +169,7 @@ def problem3a(window, point, n):
         :type n:      int
     """
     # -------------------------------------------------------------------------
-    # TODO: 3. Implement and test this function.
+    # done: 3. Implement and test this function.
     #   Note that you should write its TEST function first (above).
     # -------------------------------------------------------------------------
     # -------------------------------------------------------------------------
@@ -166,6 +197,21 @@ def run_test_problem3b():
 
 
 def problem3b(m, point1):
+
+    window = rg.RoseWindow(400, 650)
+
+    total = 0
+
+    for k in range(m):
+        point = rg.Point(point1.x, point1.y + 60 * (k + 1))
+        x = 3 + (k * 2)
+        sum = problem3a(window, point, x)
+        total = sum + total
+    window.close_on_mouse_click()
+
+    return total
+
+
     """
     See   problem3b_picture.pdf   in this project for pictures
     that may help you better understand the following specification:
