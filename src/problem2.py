@@ -160,6 +160,16 @@ def run_test_problem2b():
 
 
 def problem2b(rect, n, delta, win):
+
+    rect.attach_to(win)
+
+    for k in range(n):
+        change = (k + 1) * delta
+        corner1 = rg.Point(rect._upper_left_corner.x - change, rect._upper_left_corner.y - change)
+        corner2 = rg.Point(rect._lower_right_corner.x + change, rect._lower_right_corner.y + change)
+        rect2 = rg.Rectangle(corner1, corner2)
+        rect2.attach_to(win)
+        win.render()
     """
     See   problem2b_picture.pdf   in this project for pictures
     that may help you better understand the following specification:
